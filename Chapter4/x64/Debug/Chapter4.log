@@ -1,0 +1,5 @@
+﻿  4-2.cpp
+  4-3.cpp
+  코드를 생성하고 있습니다...
+4-3.obj : error LNK2019: "int __cdecl Pop(struct IntStack const *)" (?Pop@@YAHPEBUIntStack@@@Z) 외부 기호(참조 위치: main 함수)에서 확인하지 못했습니다.
+C:\Users\qjack\source\Algorithm\Chapter4\x64\Debug\Chapter4.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.
