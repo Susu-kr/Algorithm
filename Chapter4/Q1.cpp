@@ -60,7 +60,18 @@ int main(void) {
 	}
 	cout << "수식을 입력하세요 : \n";
 	getline(cin, s);
-	cout << s << endl;
+	string st = "";
+	for (int i = 0; i < s.size(); i++) {
+		if (s[i] == '-') {
+			if (i != 0) {
+				if (s[i - 1] >= '0' && s[i - 1] <= '9' || s[i - 1] == ')') {
+					if(s[i+1] != '(' && i < s.size())st += '+';
+				}
+			}
+		}
+		st += s[i];
+	}
+	s = st;
 	char x;
 	for (int i = 0; i < s.size(); i++) {
 		switch (s[i]) {
@@ -74,50 +85,52 @@ int main(void) {
 				Peek(&operator_S, &x); // stack 맨위 값
 				if (x == '(') {
 					Pop(&operator_S); // ( 팝
+					while (1) {
+						Peek(&operator_S, &x); // stack 맨위 값
+						cout << IsEmpty(&operator_S) << endl;
+						if (x == '(' || IsEmpty(&operator_S) == 1) break;
+						else if(x != ' ') {
+							Enque(&Postfix_Q, x); // ( 나올때까지 큐에 삽입
+							Enque(&Postfix_Q, ' '); // 공백
+							Pop(&operator_S); // 팝
+						}
+					}
 					break;
 				}
-				Enque(&Postfix_Q, ' '); // 공백
 				Enque(&Postfix_Q, x); // ( 나올때까지 큐에 삽입
+				Enque(&Postfix_Q, ' '); // 공백
 				Pop(&operator_S); // 팝
 			}
 			break;
 		case '*': // x, / 는 연산자 우선순위 높으므로 삽입
 			Push(&operator_S, s[i]);
-			Enque(&Postfix_Q, ' '); // 숫자가 아니므로 공백
 			break;
 		case '/':
 			Push(&operator_S, s[i]);
-			Enque(&Postfix_Q, ' '); // 숫자가 아니므로 공백
 			break;
 		case '+':
 			// 연산자 우선 순위가 낮으므로 곱, 나눗셈이 먼저 존재한다면 존재하지 않을 때까지 팝하고 큐에 삽입
-			while (1) {
+			while (IsEmpty(&operator_S) != 1) {
 				Peek(&operator_S, &x);
 				if (x == '*' || x == '/') {
 					Pop(&operator_S);
-					Enque(&Postfix_Q, ' ');
 					Enque(&Postfix_Q, x);
+					Enque(&Postfix_Q, ' ');
+
 				}
 				else break;
 			}
-			Enque(&Postfix_Q, ' ');
 			Push(&operator_S, s[i]);
 			break;
 		case '-':
-			while (1) { // 연산자 우선 순위가 낮으므로 곱, 나눗셈이 먼저 존재한다면 존재하지 않을 때까지 팝하고 큐에 삽입
-				Peek(&operator_S, &x);
-				if (x == '*' || x == '/') {
-					Pop(&operator_S);
-					Enque(&Postfix_Q, ' ');
-					Enque(&Postfix_Q, x);
-				}
-				else break;
-			}
-			Enque(&Postfix_Q, ' ');
-			Push(&operator_S, s[i]);
+			Peek(&operator_S, &x);
+			Enque(&Postfix_Q, s[i]);
+
 			break;
 		default:
 			Enque(&Postfix_Q, s[i]);
+			Enque(&Postfix_Q, ' ');
+
 			break;
 		}
 		Print(&operator_S);
@@ -127,15 +140,15 @@ int main(void) {
 	}
 	cout << "====================================================================================" << endl;
 	string temp;
-	int k;
+	double k;
 	while (!IsEmpty(&Postfix_Q)) {
-		int t = 0;
+		double t = 0;
 		Deque(&Postfix_Q, &x);
-		if (x >= '0' && x <= '9') temp += x; // 숫자만 저장
+		if (x >= '0' && x <= '9' || x == '.' || x == '-') temp += x; // 숫자만 저장
 		switch (x) {
 		case ' ':
 			if (temp != "") { // 저장된 숫자가 존재한 경우만
-				Push(&operand_S, stoi(temp)); // string -> int 바꾸고 삽입
+				Push(&operand_S, stod(temp)); // string -> int 바꾸고 삽입
 				temp = "";
 			}
 			break;
@@ -167,13 +180,6 @@ int main(void) {
 			Push(&operand_S, t);
 			break;
 		case '-':
-			Peek(&operand_S, &k);
-			t = k;
-			Pop(&operand_S);
-			Peek(&operand_S, &k);
-			t = k - t;
-			Pop(&operand_S);
-			Push(&operand_S, t);
 			break;
 		}
 		Print(&Postfix_Q);
@@ -181,7 +187,7 @@ int main(void) {
 		Print(&operand_S);
 		cout << endl;
 	}
-	int res;
+	double res;
 	Peek(&operand_S, &res);
 	cout << s << " : " << res << endl;
 

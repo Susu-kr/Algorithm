@@ -1,3 +1,5 @@
 ﻿  Q1.cpp
-c:\users\qjack\source\algorithm\chapter4\q1.cpp(65): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\qjack\source\algorithm\chapter4\q1.cpp(64): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\qjack\source\algorithm\chapter4\q1.cpp(68): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+c:\users\qjack\source\algorithm\chapter4\q1.cpp(76): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
   Chapter4.vcxproj -> C:\Users\qjack\source\Algorithm\Chapter4\Debug\Chapter4.exe

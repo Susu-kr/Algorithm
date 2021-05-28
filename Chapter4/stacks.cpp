@@ -6,13 +6,13 @@ int Initialize(IntStack *s, int max) {
 	if (max < 1)
 		return -1;
 	s->max = max;
-	s->stk = new int[max + 1];
+	s->stk = new double[max + 1];
 	s->ptr = 0;
-	s->stk[0] = 0;
+	s->stk[0] = 0.0;
 	return 0;
 }
 
-int Push(IntStack *s, int x) {
+int Push(IntStack *s, double x) {
 	if (s->ptr >= s->max) {
 		return -1;
 	}
@@ -20,13 +20,13 @@ int Push(IntStack *s, int x) {
 	return 0;
 }
 
-int Pop(IntStack *s) {
+double Pop(IntStack *s) {
 	if (s->ptr <= 0) return -1;
 	s->stk[s->ptr--];
 	return s->stk[s->ptr];
 }
 
-int Peek(const IntStack *s, int *x) {
+int Peek(const IntStack *s, double *x) {
 	if (s->ptr <= 0) return -1;
 	*x = s->stk[s->ptr - 1];
 	return 0;
@@ -91,4 +91,8 @@ void Terminate(CharStack *s) {
 		free(s->stk);
 	}
 	s->max = s->ptr = 0;
+}
+
+int IsEmpty(const CharStack *s) {
+	return s->ptr <= 0;
 }
