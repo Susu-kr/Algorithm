@@ -1,0 +1,5 @@
+﻿  문자열에서단어찾기.cpp
+d:\github\algorithm\chapter7\chapter7\문자열에서단어찾기.cpp(12): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\github\algorithm\chapter7\chapter7\문자열에서단어찾기.cpp(15): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\github\algorithm\chapter7\chapter7\문자열에서단어찾기.cpp(19): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  Chapter7.vcxproj -> D:\GitHub\Algorithm\Chapter7\Debug\Chapter7.exe
