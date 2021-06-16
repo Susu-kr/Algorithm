@@ -1,0 +1,6 @@
+﻿  STRING.cpp
+d:\github\algorithm\chapter8\chapter8\string.cpp(39): warning C4018: '<=': signed 또는 unsigned가 일치하지 않습니다.
+d:\github\algorithm\chapter8\chapter8\string.cpp(41): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+d:\github\algorithm\chapter8\chapter8\string.cpp(70): warning C4018: '<=': signed 또는 unsigned가 일치하지 않습니다.
+d:\github\algorithm\chapter8\chapter8\string.cpp(72): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  Chapter8.vcxproj -> D:\GitHub\Algorithm\Chapter8\Debug\Chapter8.exe
